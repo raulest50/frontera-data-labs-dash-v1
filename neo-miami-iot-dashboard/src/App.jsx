@@ -12,7 +12,8 @@ import {
   Stat,
   StatHelpText,
   StatLabel,
-  StatNumber,
+  StatValueText,
+  StatValueUnit,
   Text,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
@@ -188,10 +189,16 @@ function MetricCard({ label, value, unit, change, color }) {
           {label}
         </StatLabel>
         <HStack align="baseline" spacing={3}>
-          <StatNumber fontSize="2xl" color={color}>
-            {value}
-            {unit}
-          </StatNumber>
+          <HStack align="baseline" spacing={1}>
+            <StatValueText fontSize="2xl" color={color}>
+              {value}
+            </StatValueText>
+            {unit ? (
+              <StatValueUnit fontSize="lg" color={color}>
+                {unit}
+              </StatValueUnit>
+            ) : null}
+          </HStack>
           <Badge colorScheme={trending === 'up' ? 'pink' : 'blue'}>
             {symbol}
             {change.toFixed(1)}%
