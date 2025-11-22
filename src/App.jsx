@@ -9,10 +9,6 @@ import {
   HStack,
   Progress,
   Stat,
-  StatHelpText,
-  StatLabel,
-  StatValueText,
-  StatValueUnit,
   Text,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
@@ -183,28 +179,27 @@ function MetricCard({ label, value, unit, change, color }) {
       whileHover={{ y: -3 }}
       transition="0.2s"
     >
-      <Stat>
-        <StatLabel color="miami.teal" fontWeight="bold" letterSpacing="wide">
+      <Stat.Root>
+        <Stat.Label color="miami.teal" fontWeight="bold" letterSpacing="wide">
           {label}
-        </StatLabel>
+        </Stat.Label>
+
         <HStack align="baseline" spacing={3}>
           <HStack align="baseline" spacing={1}>
-            <StatValueText fontSize="2xl" color={color}>
+            <Stat.ValueText color={color} fontSize="2xl">
               {value}
-            </StatValueText>
-            {unit ? (
-              <StatValueUnit fontSize="lg" color={color}>
-                {unit}
-              </StatValueUnit>
-            ) : null}
+              {unit ? <Text as="span" fontSize="lg"> {unit}</Text> : null}
+            </Stat.ValueText>
           </HStack>
+
           <Badge colorScheme={trending === 'up' ? 'pink' : 'blue'}>
             {symbol}
             {change.toFixed(1)}%
           </Badge>
         </HStack>
-        <StatHelpText color="gray.300">Live sampled / 5s</StatHelpText>
-      </Stat>
+
+        <Stat.HelpText color="gray.300">Live sampled / 5s</Stat.HelpText>
+      </Stat.Root>
     </MotionBox>
   );
 }
