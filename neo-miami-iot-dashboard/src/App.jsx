@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Badge,
   Box,
-  Divider,
   Flex,
   Grid,
   GridItem,
@@ -375,7 +374,11 @@ export default function App() {
         </GridItem>
       </Grid>
 
-      <Divider borderColor="rgba(255, 255, 255, 0.08)" />
+      <Box
+        mx={6}
+        borderTop="1px solid rgba(255, 255, 255, 0.08)"
+        boxShadow="0 -4px 12px rgba(3, 0, 22, 0.35)"
+      />
 
       <Flex px={6} py={4} align="center" justify="space-between" bg="rgba(5, 9, 26, 0.65)" borderTop="1px solid rgba(79, 209, 197, 0.1)">
         <Text color="gray.400">Edge compute nodes stable · Data latency &lt; 120ms</Text>
